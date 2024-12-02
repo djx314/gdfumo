@@ -1,7 +1,6 @@
 package gdfumo
 
 import java.nio.charset.StandardCharsets
-import scala.io.Source
 import util.Using
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -112,8 +111,10 @@ object HmlReader:
   end extractTo抗性
 
   def 抗性DataStringToInt(d: 抗性Data[String]): 抗性Data[Int] = {
-    def replaceString(str: String): Int = str.match
-      case s"$t%" => t.toInt
+    def replaceString(str: String): Int =
+      str.match
+        case s"$t%" => t.toInt
+      end match
     end replaceString
 
     val applyInt = 抗性Data.apply[Int]
