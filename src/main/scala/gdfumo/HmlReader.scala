@@ -26,6 +26,8 @@ object 抗性 {
   val empty: 抗性 = 抗性(火焰抗性 = 0, 冰冷抗性 = 0, 闪电抗性 = 0, 毒素抗性 = 0, 穿刺抗性 = 0, 流血抗性 = 0, 活力抗性 = 0, 虚化抗性 = 0, 混乱抗性 = 0)
 }
 
+case class Fumo[Data](id: Int, name: String, data: Data)
+
 case class 元素抗性[Data](value: Data) extends AnyVal
 case class 火焰抗性[Data](value: Data) extends AnyVal
 case class 冰冷抗性[Data](value: Data) extends AnyVal
@@ -60,7 +62,7 @@ object HmlReader:
     Using.resource(ioStream)(st1 => Jsoup.parse(st1, StandardCharsets.UTF_8.name(), baseUri))
   end inputToString
 
-  def names: List[(List[(String, String)], String)] =
+  def names: List[Fumo[List[(String, String)]]] =
     val doc: Document           = inputToString
     val newsHeadlines: Elements = doc.select("#item-list .item-list-group .item-card.item-enchant .item-description")
     val eles: List[Element]     = for (ele <- newsHeadlines.asScala.to(List)) yield ele
@@ -68,16 +70,26 @@ object HmlReader:
       val attrElements: List[Element]  = ele.select(".tooltip-skill-params.item-padded-h.item-padded-v > div").asScala.to(List)
       val attr: List[(String, String)] = for (attrEle <- attrElements) yield (attrEle.select(".text-brown").text(), attrEle.text())
 
-      (attr, ele.select(".item-name.epic").text())
+      val eleId: Elements  = ele.select(".item-name.epic")
+      val fumoName: String = eleId.text()
+      val fumoId: Int =
+        eleId
+          .attr("href")
+          .match
+            case s"/db/zh/items/$id" => id.toInt
+        end match
+
+      Fumo[List[(String, String)]](id = fumoId, name = fumoName, data = attr)
     end for
   end names
 
-  def extractTo抗性: List[(List[抗性Data[String]], String)] =
-    val nameMap: List[(List[(String, String)], String)] = names
+  def extractTo抗性: List[Fumo[List[抗性Data[String]]]] =
+    val nameMap: List[Fumo[List[(String, String)]]] = names
 
     val applyInstance = 抗性Data.apply[String]
     def stringToAdt(key: String, value: String): 抗性Data[String] = {
       def persent: String = value.replace(key, "").trim
+
       key.match {
         case "元素抗性"    => applyInstance(元素抗性[String](persent))
         case "火焰抗性"    => applyInstance(火焰抗性[String](persent))
@@ -93,9 +105,9 @@ object HmlReader:
       }
     }
 
-    for (eachM, eachName) <- nameMap yield {
-      val valueSeq: List[抗性Data[String]] = for (key, value) <- eachM yield stringToAdt(key, value)
-      (valueSeq, eachName)
+    for (eachM <- nameMap) yield {
+      val valueSeq: List[抗性Data[String]] = for (key, value) <- eachM.data yield stringToAdt(key = key, value = value)
+      eachM.copy(data = valueSeq)
     }
   end extractTo抗性
 
@@ -140,12 +152,16 @@ object HmlReader:
   end 抗性IntListToCopy
 
   def main(arr: Array[String]): Unit =
-    val data: List[(抗性, String)] =
-      for (m1, m2) <- extractTo抗性 yield (抗性IntListToCopy(for (each <- m1) yield 抗性DataStringToInt(each))(抗性.empty), m2)
+    val data: List[Fumo[抗性]] = for (eachM <- extractTo抗性) yield {
+      val col1 = for (each <- eachM.data) yield 抗性DataStringToInt(each)
+      val 抗性1  = 抗性IntListToCopy(col1)(抗性.empty)
+      eachM.copy(data = 抗性1)
+    }
 
     for (d <- data) {
       println(d)
     }
+    println(data.size)
   end main
 
 end HmlReader
