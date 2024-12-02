@@ -142,7 +142,10 @@ object HmlReader:
   def main(arr: Array[String]): Unit =
     val data: List[(抗性, String)] =
       for (m1, m2) <- extractTo抗性 yield (抗性IntListToCopy(for (each <- m1) yield 抗性DataStringToInt(each))(抗性.empty), m2)
-    println(data)
+
+    for (d <- data) {
+      println(d)
+    }
   end main
 
 end HmlReader
