@@ -18,11 +18,8 @@ object AdtData2 {
     }
   }
 
-  implicit def implEncoder[T1: Encoder, T2: Encoder]: Encoder[AdtData2[T1, T2]] = {
-    Encoder.instance[AdtData2[T1, T2]] { d =>
-      d.data.fold(_.asJson)(_.asJson)
-    }
-  }
+  implicit def implEncoder[T1: Encoder, T2: Encoder]: Encoder[AdtData2[T1, T2]] =
+    Encoder.instance[AdtData2[T1, T2]](d => d.data.fold(_.asJson)(_.asJson))
 
   implicit def implDecoder[T1: Decoder, T2: Decoder]: Decoder[AdtData2[T1, T2]] = {
     val adtApply = Adt.CoProduct2[T1, T2]
