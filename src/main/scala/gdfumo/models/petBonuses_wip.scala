@@ -1,8 +1,9 @@
 package gdfumo
 
-import io.circe._
-import io.circe.generic.semiauto._
-import datatype._
+import io.circe.Codec
+import io.circe.generic.JsonCodec
+import io.circe.generic.semiauto.deriveCodec
+import datatype.{ListOrItem, StringOrElse}
 
 case class petBonuses(
   o: String,
@@ -17,10 +18,10 @@ case class petBonuses(
   defensivePercentCurrentLife: Option[BigDecimal],
   offensiveStunChance: Option[BigDecimal],
   conversionOutType2: Option[String],
-  offensiveTotalResistanceReductionAbsoluteMin: Option[List[Json]],
+  offensiveTotalResistanceReductionAbsoluteMin: Option[List[Int]],
   offensiveLightningModifierChance: Option[BigDecimal],
   offensiveSlowFireMin: Option[BigDecimal],
-  offensiveColdMax: Option[List[Json]],
+  offensiveColdMax: Option[List[Int]],
   offensiveGlobalChance: Option[BigDecimal],
   defensiveProtectionModifier: Option[BigDecimal],
   defensiveAetherMaxResist: Option[BigDecimal],
@@ -29,7 +30,7 @@ case class petBonuses(
   offensivePhysicalModifier: Option[BigDecimal],
   defensivePierce: Option[BigDecimal],
   offensiveSlowBleedingDurationMin: Option[BigDecimal],
-  retaliationFireMin: Option[List[Json]],
+  retaliationFireMin: Option[List[Int]],
   offensivePoisonModifier: Option[BigDecimal],
   offensiveSlowPoisonModifier: Option[BigDecimal],
   retaliationPoisonMin: Option[BigDecimal],
@@ -68,7 +69,7 @@ case class petBonuses(
   offensiveSlowColdModifier: Option[BigDecimal],
   offensiveTauntMin: Option[BigDecimal],
   offensiveAetherModifier: Option[BigDecimal],
-  characterOffensiveAbility: Option[List[Json]],
+  characterOffensiveAbility: Option[List[Int]],
   retaliationAetherMin: Option[BigDecimal],
   conversionInType2: Option[String],
   offensiveSlowLightningModifier: Option[BigDecimal],

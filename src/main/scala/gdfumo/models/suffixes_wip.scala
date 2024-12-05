@@ -1,8 +1,9 @@
 package gdfumo
 
-import io.circe._
-import io.circe.generic.semiauto._
-import datatype._
+import io.circe.Codec
+import io.circe.generic.JsonCodec
+import io.circe.generic.semiauto.deriveCodec
+import datatype.{ListOrItem, StringOrElse}
 
 case class suffixes(
   i: Int,
@@ -61,7 +62,7 @@ case class suffixes(
   characterSpellCastSpeedModifier: Option[BigDecimal],
   characterDodgePercent: Option[BigDecimal],
   offensiveSlowLightningDurationModifier: Option[BigDecimal],
-  onlyForItems: Option[List[Json]],
+  onlyForItems: Option[List[String]],
   characterDefensiveAbilityModifier: Option[BigDecimal],
   offensiveConfusionMax: Option[BigDecimal],
   offensiveChaosModifier: Option[BigDecimal],
@@ -74,7 +75,7 @@ case class suffixes(
   characterMana: Option[BigDecimal],
   offensiveTotalDamageModifier: Option[BigDecimal],
   offensivePierceChance: Option[BigDecimal],
-  mods: Option[List[Json]],
+  mods: Option[List[String]],
   offensiveSlowFireModifier: Option[BigDecimal],
   offensiveLifeLeechMin: Option[BigDecimal],
   characterLife: Option[BigDecimal],
@@ -139,6 +140,4 @@ object suffixes {
     val impl = deriveCodec[suffixes]
     Codec.from(impl, impl.mapJson(_.dropNullValues))
   }
-
-  val derived111: (En121[suffixes], shapeless.HList) = En121.derived
 }

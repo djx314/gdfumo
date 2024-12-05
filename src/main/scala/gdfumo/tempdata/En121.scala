@@ -63,17 +63,20 @@ object AdtData2 {
     yield AdtData2(t.data)
 }*/
 
-class StringOrInteger(override val data: Adt.CoProduct2[String, Int]) extends AdtData2Abstract[String, Int]
+class StringOrElse[T1](override val data: Adt.CoProduct2[String, T1]) extends AdtData2Abstract[String, T1]
 
-object StringOrInteger {
-  def apply[TIX: Adt.CoProducts2[*, String, Int]](d: TIX): StringOrInteger = {
-    val adtApply = Adt.CoProduct2[String, Int]
-    new StringOrInteger(adtApply(d))
+object StringOrElse {
+  def build[T1]: Apply[T1] = new Apply
+  final class Apply[T1] {
+    def apply[TIX: Adt.CoProducts2[*, String, T1]](d: TIX): StringOrElse[T1] = {
+      val adtApply = Adt.CoProduct2[String, T1]
+      new StringOrElse(adtApply(d))
+    }
   }
 
-  implicit def implEncoder: Encoder[StringOrInteger] =
-    AdtData2Abstract.implEncoder[String, Int].contramap(s => new StringOrInteger(s.data))
+  implicit def implEncoder[T1: Encoder]: Encoder[StringOrElse[T1]] =
+    AdtData2Abstract.implEncoder[String, T1].contramap(s => new StringOrElse(s.data))
 
-  implicit def implDecoder: Decoder[StringOrInteger] = for (t <- AdtData2Abstract.implDecoder[String, Int])
-    yield new StringOrInteger(t.data)
+  implicit def implDecoder[T1: Decoder]: Decoder[StringOrElse[T1]] = for (t <- AdtData2Abstract.implDecoder[String, T1])
+    yield new StringOrElse(t.data)
 }

@@ -1,13 +1,15 @@
 package gdfumo
 
-import io.circe._
+import io.circe.Codec
 import io.circe.generic.JsonCodec
-import io.circe.generic.semiauto._
+import io.circe.generic.semiauto.deriveCodec
+import datatype.{ListOrItem, StringOrElse}
 
 case class itemSets(
   o: String,
   setName: String,
   setDescription: String,
+  itemSkillLevel: Option[List[Int]],
   setMembers: List[String],
   augmentMasteryName1: Option[String],
   conversionOutType2: Option[String],
@@ -146,8 +148,7 @@ case class itemSets(
   offensiveCritDamageModifier: Option[List[BigDecimal]],
   offensiveSlowBleedingModifier: Option[List[BigDecimal]],
   defensiveElementalResistance: Option[List[BigDecimal]],
-  offensiveLightningMax: Option[List[BigDecimal]],
-  itemSkillLevel: Option[List[Json]]
+  offensiveLightningMax: Option[List[BigDecimal]]
 )
 
 object itemSets {

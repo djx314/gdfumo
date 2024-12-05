@@ -1,8 +1,9 @@
 package gdfumo
 
-import io.circe._
-import io.circe.generic.semiauto._
-import datatype._
+import io.circe.Codec
+import io.circe.generic.JsonCodec
+import io.circe.generic.semiauto.deriveCodec
+import datatype.{ListOrItem, StringOrElse}
 
 case class buffSkills(
   skillMaxLevel: Int,

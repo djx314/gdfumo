@@ -1,9 +1,9 @@
 package gdfumo
 
-import io.circe._
+import io.circe.Codec
 import io.circe.generic.JsonCodec
-import io.circe.generic.semiauto._
-import datatype._
+import io.circe.generic.semiauto.deriveCodec
+import datatype.{ListOrItem, StringOrElse}
 
 case class bonusTableAffixes(
   l: String,
@@ -14,7 +14,7 @@ case class bonusTableAffixes(
   augmentSkillName2: Option[String],
   augmentSkillName1: Option[String],
   petBonusName: Option[String],
-  itemSkillLevelEq: Option[StringOrInteger],
+  itemSkillLevelEq: Option[StringOrElse[Int]],
   itemSkillAutoController: Option[String],
   mods: Option[List[String]],
   itemSkillName: Option[String],
