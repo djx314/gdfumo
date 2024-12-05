@@ -51,22 +51,23 @@ object JsonReader {
         println(s"$k:Option[Json],")
       }*/
 
-      /*val col =
-        for (x1 <- result.buffSkills.values.to(List))
-          yield buffSkills.derived111._1.encode(x1, buffSkills.derived111._2)
+      val col =
+        for (x1 <- result.suffixes.values.to(List))
+          yield suffixes.derived111._1.encode(x1, suffixes.derived111._2)
       val set  = col.flatMap(_._1).collect { case t if t._2 != "Option[Json]" => t }.to(Set)
       val map  = set.toList
       val set2 = map.map(_._1).groupBy(identity).collect { case (i1, i2) if i2.to(List).size == 1 => i1 }
-      val set3 = map.map(_._1).groupBy(identity).collect { case (i1, i2) if i2.to(List).size > 1 => i1 }
+      val set3 = map.map(_._1).groupBy(identity).collect { case (i1, i2) if i2.to(List).size > 1 => (i1, i2) }
       for (t <- set2) {
         println(s"${t}:${map.toMap.get(t).get},")
       }
-      for (t <- set3) {
-        println(s"${t}:Option[Json],")
+      for ((t1, t2) <- set3) {
+        val aa = set.toList.filter(t => t._1 == t1).map(_._2)
+        println(s"${t1}:AdtData2[${aa(0)},${aa(1)}],")
       }
-      println(set.size)*/
+      println(set.size)
 
-      println(result.player.characterAttackSpeed)
+      // println(result.prefixes.values.map(_.itemSkillLevelEq))
       println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }
