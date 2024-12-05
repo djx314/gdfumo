@@ -7,6 +7,7 @@ libraryDependencies ++= libScalax.`javet`.value
 libraryDependencies ++= libScalax.`javet-node-windows-x86_64`.value
 libraryDependencies ++= libScalax.`circe`.value
 libraryDependencies ++= libScalax.`circe-extras`.value
+libraryDependencies ++= libScalax.`kind-projector`.value
 
 run / fork := true
 

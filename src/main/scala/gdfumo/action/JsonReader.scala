@@ -54,13 +54,13 @@ object JsonReader {
       val col =
         for (x1 <- result.bonusTableAffixes.values.to(List))
           yield bonusTableAffixes.derived111._1.encode(x1, bonusTableAffixes.derived111._2)
-      val set = col.collectFirst { case t if (t._2 == col.map(_._2).max) => t }.get
-      for (t <- set._1) {
+      val set = col.flatMap(_._1).collect { case t if t._2 != "Option[Json]" => t }.to(Set)
+      for (t <- set) {
         println(s"${t._1}:${t._2},")
       }
-      println(set._2)
+      println(set.size)
 
-      // println(result.itemSkills)
+      println(result.bonusTableAffixes.values.map(_.mods))
       println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }
