@@ -27,20 +27,31 @@ object JsonReader {
       jsonSuccess <- parser.parse(inputToString)
       result      <- jsonSuccess.as[GrimTools]
     } yield {
-      /*val preaa1        = result.petBonuses.values
-      val reppsdklslfj2 = preaa1.flatMap(_.keys)
-      val aa3 = reppsdklslfj2.groupBy(identity).map {
+      /*val preaa1 = result.suffixes.values.asJson.as[List[Map[String, Json]]].getOrElse(???).flatMap(_.keys)
+      val preaa2 = result.prefixes.values.asJson.as[List[Map[String, Json]]].getOrElse(???).flatMap(_.keys)
+      println(preaa1.size)
+      println(preaa2.size)
+      val preaa3 = preaa2.filter(t => !preaa1.exists(t2 => t == t2))
+      println(preaa3.size)
+      println(preaa2.size - preaa1.size)
+      preaa2.groupBy(identity).map { case (t1, t2) =>
+        if (t2.size == result.prefixes.size) {
+          println(t1)
+        }
+      }*/
+      /*val reppsdklslfj2 = result.itemSkills
+      val aa3 = reppsdklslfj2.values.flatMap(_.keys).groupBy(identity).map {
         case (a1, a2) => {
-          if (a2.to(List).size == preaa1.size) {
+          if (a2.to(List).size == reppsdklslfj2.size) {
             println(a1)
           }
         }
       }
-      println(result.petBonuses.values.flatMap(_.keys).to(List).distinct)*/
-      /*for (t <- result.petBonuses.values.flatMap(_.keys).to(List).distinct) {
-        println(s"$t : Option[Json],")
+      for (k <- result.itemSkills.values.flatMap(_.keys).to(Set)) {
+        println(s"$k:Option[Json],")
       }*/
-      println(result.player)
+
+      // println(result.itemSkills)
       println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }

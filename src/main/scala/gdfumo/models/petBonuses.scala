@@ -4,7 +4,7 @@ import io.circe._
 import io.circe.generic.semiauto._
 
 case class petBonuses(
-  o: Option[Json],
+  o: String,
   templateName: String,
   defensivePhysical: Option[Json],
   offensiveTotalDamageModifier: Option[Json],

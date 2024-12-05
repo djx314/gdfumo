@@ -7,7 +7,6 @@ import io.circe.generic.semiauto._
 @JsonCodec
 case class GrimTools(
   blacklistedSets: List[String],
-  // 待处理
   petBonuses: Map[String, petBonuses],
   dbMasteryData: Map[String, dbMasteryData],
   factions: Map[String, factions],
@@ -19,8 +18,7 @@ case class GrimTools(
   combatformulas: combatformulas,
   itemCostFormulae: Map[String, itemCostFormulae],
   db_l10n: List[db_l10n],
-  // 待处理
-  itemSkills: Map[String, Map[String, Json]],
+  itemSkills: Map[String, itemSkills_compat],
   toolModName: None.type,
   gameVersion: String,
   toolModId: None.type,
@@ -30,19 +28,19 @@ case class GrimTools(
   db_l10n_texts: db_l10n_texts,
   defaultItemCostFormula: String,
   player: player,
-  merchantItems: Json,
-  containers: Json,
-  bonusTableAffixes: Json,
-  modNameMap: Json,
-  MIRefs: Json,
-  versionDiffs: Json,
-  shortNameMapping: Json,
-  allItems: Json,
-  itemSets: Json,
-  suffixes: Json,
-  MIs: Json,
-  itemSkillControllers: Json,
-  buffSkills: Json,
-  uniqueRares: Json,
-  engine: Json
+  merchantItems: Map[String, List[String]],
+  containers: Map[String, containers],
+  bonusTableAffixes: Map[String, bonusTableAffixes],
+  modNameMap: modNameMap,
+  MIRefs: Map[String, List[String]],
+  versionDiffs: Map[String, versionDiffs],
+  shortNameMapping: Map[String, String],
+  allItems: Map[String, allItems_compat],
+  itemSets: Map[String, itemSets],
+  suffixes: Map[String, suffixes],
+  MIs: List[String],
+  itemSkillControllers: Map[String, itemSkillControllers],
+  buffSkills: Map[String, buffSkills],
+  uniqueRares: List[String],
+  engine: engine
 )
