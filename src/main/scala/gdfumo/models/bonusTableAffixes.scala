@@ -78,6 +78,4 @@ object bonusTableAffixes {
     val impl = deriveCodec[bonusTableAffixes]
     Codec.from(impl, impl.mapJson(_.dropNullValues))
   }
-
-  val derived111: (En121[bonusTableAffixes], shapeless.HList) = En121.derived
 }

@@ -51,16 +51,22 @@ object JsonReader {
         println(s"$k:Option[Json],")
       }*/
 
-      val col =
-        for (x1 <- result.bonusTableAffixes.values.to(List))
-          yield bonusTableAffixes.derived111._1.encode(x1, bonusTableAffixes.derived111._2)
-      val set = col.flatMap(_._1).collect { case t if t._2 != "Option[Json]" => t }.to(Set)
-      for (t <- set) {
-        println(s"${t._1}:${t._2},")
+      /*val col =
+        for (x1 <- result.buffSkills.values.to(List))
+          yield buffSkills.derived111._1.encode(x1, buffSkills.derived111._2)
+      val set  = col.flatMap(_._1).collect { case t if t._2 != "Option[Json]" => t }.to(Set)
+      val map  = set.toList
+      val set2 = map.map(_._1).groupBy(identity).collect { case (i1, i2) if i2.to(List).size == 1 => i1 }
+      val set3 = map.map(_._1).groupBy(identity).collect { case (i1, i2) if i2.to(List).size > 1 => i1 }
+      for (t <- set2) {
+        println(s"${t}:${map.toMap.get(t).get},")
       }
-      println(set.size)
+      for (t <- set3) {
+        println(s"${t}:Option[Json],")
+      }
+      println(set.size)*/
 
-      println(result.bonusTableAffixes.values.map(_.mods))
+      // println(result.bonusTableAffixes.values.map(_.mods))
       println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }
