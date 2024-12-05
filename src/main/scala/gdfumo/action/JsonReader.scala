@@ -66,7 +66,7 @@ object JsonReader {
       }
       println(set.size)*/
 
-      // println(result.bonusTableAffixes.values.map(_.mods))
+      println(result.player.characterAttackSpeed)
       println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }
