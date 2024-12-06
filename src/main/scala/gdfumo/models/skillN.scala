@@ -1,7 +1,7 @@
 package gdfumo
 
-import datatype.ListOrItem
+import datatype.GDArrayNotNone
 import io.circe.generic.JsonCodec
 
 @JsonCodec
-case class skillN(level: ListOrItem[String], skill: spawnSkill)
+case class skillN(level: GDArrayNotNone[String], skill: spawnSkill)

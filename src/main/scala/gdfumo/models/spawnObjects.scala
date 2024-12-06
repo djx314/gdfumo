@@ -3,12 +3,11 @@ package gdfumo
 import io.circe.Codec
 import io.circe.generic.JsonCodec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.StringOrElse
 
 case class spawnObjects(
   description: String,
   charLevel: String,
-  characterAttributeEquations: Map[String, StringOrElse[Int]],
+  characterAttributeEquations: characterAttributeEquations,
   invincible: Option[Boolean],
   skill1: skillN,
   skill2: Option[skillN],

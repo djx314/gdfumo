@@ -3,7 +3,7 @@ package gdfumo
 import io.circe.Codec
 import io.circe.generic.JsonCodec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.{ListOrItem, StringOrElse}
+import datatype.{GDArray, StringOrElse}
 
 case class suffixes(
   i: Int,
@@ -132,7 +132,7 @@ case class suffixes(
   characterMeleeDexterityReqReduction: Option[BigDecimal],
   defensiveElementalResistance: Option[BigDecimal],
   offensiveLightningMax: Option[BigDecimal],
-  racialBonusRace: Option[ListOrItem[String]]
+  racialBonusRace: GDArray[String]
 )
 
 object suffixes {

@@ -2,7 +2,7 @@ package gdfumo
 
 import io.circe.Codec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.ListOrItem
+import datatype.GDArray
 
 case class spawnSkill(
   l: String,
@@ -110,31 +110,31 @@ case class spawnSkill(
   offensivePhysicalReductionPercentDurationMin: Option[BigDecimal],
   offensiveCritDamageModifier: Option[List[Int]],
   defensiveLifeDuration: Option[BigDecimal],
-  offensiveSlowLightningMin: Option[ListOrItem[BigDecimal]],
-  offensiveColdMax: Option[ListOrItem[BigDecimal]],
-  defensiveDisruption: Option[ListOrItem[BigDecimal]],
-  offensiveTotalDamageReductionPercentDurationMin: Option[ListOrItem[BigDecimal]],
-  offensiveSlowColdMin: Option[ListOrItem[BigDecimal]],
-  offensivePierceMin: Option[ListOrItem[BigDecimal]],
-  defensiveConfusion: Option[ListOrItem[BigDecimal]],
-  offensiveLifeMin: Option[ListOrItem[BigDecimal]],
-  weaponDamagePct: Option[ListOrItem[BigDecimal]],
-  offensiveColdMin: Option[ListOrItem[BigDecimal]],
-  offensivePhysicalMin: Option[ListOrItem[BigDecimal]],
-  skillTargetNumber: Option[ListOrItem[BigDecimal]],
-  offensiveLightningMin: Option[ListOrItem[BigDecimal]],
-  offensiveTotalDamageReductionPercentMin: Option[ListOrItem[BigDecimal]],
-  offensiveFireMin: Option[ListOrItem[BigDecimal]],
-  offensivePoisonMax: Option[ListOrItem[BigDecimal]],
-  offensivePoisonMin: Option[ListOrItem[BigDecimal]],
-  defensiveFear: Option[ListOrItem[BigDecimal]],
-  projectilePiercingChance: Option[ListOrItem[BigDecimal]],
-  skillManaCost: Option[ListOrItem[BigDecimal]],
-  offensiveSlowPoisonMin: Option[ListOrItem[BigDecimal]],
-  offensivePhysicalMax: Option[ListOrItem[BigDecimal]],
-  skillTargetAngle: Option[ListOrItem[BigDecimal]],
-  defensiveConvert: Option[ListOrItem[BigDecimal]],
-  offensiveLightningMax: Option[ListOrItem[BigDecimal]]
+  offensiveSlowLightningMin: GDArray[BigDecimal],
+  offensiveColdMax: GDArray[BigDecimal],
+  defensiveDisruption: GDArray[BigDecimal],
+  offensiveTotalDamageReductionPercentDurationMin: GDArray[BigDecimal],
+  offensiveSlowColdMin: GDArray[BigDecimal],
+  offensivePierceMin: GDArray[BigDecimal],
+  defensiveConfusion: GDArray[BigDecimal],
+  offensiveLifeMin: GDArray[BigDecimal],
+  weaponDamagePct: GDArray[BigDecimal],
+  offensiveColdMin: GDArray[BigDecimal],
+  offensivePhysicalMin: GDArray[BigDecimal],
+  skillTargetNumber: GDArray[BigDecimal],
+  offensiveLightningMin: GDArray[BigDecimal],
+  offensiveTotalDamageReductionPercentMin: GDArray[BigDecimal],
+  offensiveFireMin: GDArray[BigDecimal],
+  offensivePoisonMax: GDArray[BigDecimal],
+  offensivePoisonMin: GDArray[BigDecimal],
+  defensiveFear: GDArray[BigDecimal],
+  projectilePiercingChance: GDArray[BigDecimal],
+  skillManaCost: GDArray[BigDecimal],
+  offensiveSlowPoisonMin: GDArray[BigDecimal],
+  offensivePhysicalMax: GDArray[BigDecimal],
+  skillTargetAngle: GDArray[BigDecimal],
+  defensiveConvert: GDArray[BigDecimal],
+  offensiveLightningMax: GDArray[BigDecimal]
 )
 
 object spawnSkill {

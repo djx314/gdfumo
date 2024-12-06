@@ -3,7 +3,7 @@ package gdfumo
 import io.circe.Codec
 import io.circe.generic.JsonCodec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.{ListOrItem, StringOrElse}
+import datatype.{GDArray, StringOrElse}
 
 case class prefixes(
   f: String,
@@ -159,7 +159,7 @@ case class prefixes(
   defensiveElementalResistance: Option[BigDecimal],
   offensiveLightningMax: Option[BigDecimal],
   offensiveManaBurnDrainMin: Option[BigDecimal],
-  racialBonusRace: Option[ListOrItem[String]],
+  racialBonusRace: GDArray[String],
   itemSkillLevelEq: Option[StringOrElse[Int]]
 )
 

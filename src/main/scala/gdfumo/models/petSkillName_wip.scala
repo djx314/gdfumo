@@ -1,0 +1,93 @@
+package gdfumo
+
+import io.circe.{Codec, Json}
+import io.circe.generic.JsonCodec
+import io.circe.generic.semiauto.deriveCodec
+import datatype.{GDArray, StringOrElse}
+
+case class petSkillName(
+  l: String,
+  o: String,
+  templateName: String,
+  projectilePiercing: Option[BigDecimal],
+  offensivePierceMin: Option[BigDecimal],
+  offensiveSlowLifeDurationMin: Option[BigDecimal],
+  offensiveTauntMin: Option[BigDecimal],
+  offensiveSlowLightningMin: Option[BigDecimal],
+  offensiveSlowFireDurationMin: Option[BigDecimal],
+  offensiveProjectileFumbleMin: Option[BigDecimal],
+  conversionOutType2: Option[String],
+  offensiveDamageMultModifier: Option[BigDecimal],
+  characterDefensiveAbility: Option[BigDecimal],
+  characterLifeModifier: Option[BigDecimal],
+  offensiveChaosMax: Option[BigDecimal],
+  offensiveFreezeMin: Option[List[Int]],
+  defensivePoison: Option[BigDecimal],
+  offensiveFireModifier: Option[List[Int]],
+  defensiveSlowLifeLeach: Option[BigDecimal],
+  offensiveTotalDamageReductionPercentDurationMin: Option[BigDecimal],
+  offensiveSlowBleedingDurationMin: Option[BigDecimal],
+  offensiveAetherMin: Option[BigDecimal],
+  characterSpellCastSpeedModifier: Option[BigDecimal],
+  offensiveSlowPhysicalDurationMin: Option[BigDecimal],
+  offensivePoisonMin: Option[BigDecimal],
+  skillLifeBonus: Option[List[Int]],
+  explosionRadius: Option[BigDecimal],
+  offensiveSlowLightningDurationMin: Option[BigDecimal],
+  defensiveAether: Option[BigDecimal],
+  offensiveLifeLeechMin: Option[BigDecimal],
+  offensiveSlowPoisonMin: Option[BigDecimal],
+  conversionInType: Option[String],
+  offensiveSlowPhysicalMin: Option[BigDecimal],
+  offensiveElementalMin: Option[BigDecimal],
+  offensiveFumbleMin: Option[BigDecimal],
+  weaponDamagePct: Option[List[Json]],
+  conversionOutType: Option[String],
+  defensivePhysical: Option[BigDecimal],
+  offensiveSlowColdDurationMin: Option[BigDecimal],
+  offensiveSlowPoisonDurationMin: Option[BigDecimal],
+  defensiveTotalSpeedResistance: Option[BigDecimal],
+  offensiveProjectileFumbleDurationMin: Option[BigDecimal],
+  conversionPercentage: Option[BigDecimal],
+  characterTotalSpeedModifier: Option[List[Json]],
+  offensivePhysicalMin: Option[BigDecimal],
+  defensiveCold: Option[List[Json]],
+  offensiveSlowTotalSpeedDurationMin: Option[BigDecimal],
+  conversionPercentage2: Option[BigDecimal],
+  offensiveChaosMin: Option[BigDecimal],
+  conversionInType2: Option[String],
+  defensiveBleeding: Option[BigDecimal],
+  skillMaxLevel: Option[BigDecimal],
+  offensiveFumbleDurationMin: Option[BigDecimal],
+  offensiveTotalResistanceReductionAbsoluteDurationMin: Option[BigDecimal],
+  offensiveTotalDamageReductionPercentMin: Option[BigDecimal],
+  offensiveLightningMax: Option[BigDecimal],
+  projectileLaunchRotation: GDArray[BigDecimal],
+  offensiveFireMin: GDArray[BigDecimal],
+  offensiveTotalResistanceReductionAbsoluteMin: GDArray[BigDecimal],
+  offensiveSlowColdMin: GDArray[BigDecimal],
+  offensiveSlowLifeMin: GDArray[BigDecimal],
+  skillTargetRadius: GDArray[BigDecimal],
+  defensiveChaos: GDArray[BigDecimal],
+  offensiveLifeMin: GDArray[BigDecimal],
+  skillLifePercent: GDArray[BigDecimal],
+  offensiveSlowTotalSpeedMin: GDArray[BigDecimal],
+  offensiveSlowBleedingMin: GDArray[BigDecimal],
+  projectileLaunchNumber: GDArray[BigDecimal],
+  characterAttackSpeedModifier: GDArray[BigDecimal],
+  defensiveLife: GDArray[BigDecimal],
+  offensiveLightningMin: GDArray[BigDecimal],
+  defensiveFire: GDArray[BigDecimal],
+  offensiveSlowFireMin: GDArray[BigDecimal],
+  offensiveColdMin: GDArray[BigDecimal],
+  defensiveLightning: GDArray[BigDecimal],
+  offensiveCritDamageModifier: GDArray[BigDecimal],
+  defensiveElementalResistance: GDArray[BigDecimal]
+)
+
+object petSkillName {
+  implicit val codecJson: Codec[petSkillName] = {
+    val impl = deriveCodec[petSkillName]
+    Codec.from(impl, impl.mapJson(_.dropNullValues))
+  }
+}

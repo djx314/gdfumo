@@ -3,7 +3,7 @@ package gdfumo
 import io.circe.{Codec, Decoder, Encoder}
 import io.circe.generic.JsonCodec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.{ListOrItem, StringOrElse}
+import datatype.{GDArray, StringOrElse}
 
 case class allItems_1(
   l: String,
@@ -20,7 +20,7 @@ case class allItems_1(
   offensiveTotalResistanceReductionPercentChance: Option[BigDecimal],
   skillManaCostReduction: Option[BigDecimal],
   racialBonusAbsoluteDamage: Option[BigDecimal],
-  transmuteDbrs: Option[Map[String, StringOrElse[Int]]],
+  transmuteDbrs: Option[transmuteDbrs],
   characterConstitutionModifier: Option[BigDecimal],
   offensiveSlowLightningMin: Option[BigDecimal],
   offensiveBaseChaosMax: Option[BigDecimal],
@@ -199,7 +199,7 @@ case class allItems_1(
   defensiveBlock: Option[BigDecimal],
   artifactClassification: Option[String],
   offensiveLifeMin: Option[BigDecimal],
-  racialBonusRace: Option[ListOrItem[String]],
+  racialBonusRace: GDArray[String],
   itemSkillLevelEq: Option[StringOrElse[Int]]
 )
 object allItems_1 {
@@ -394,7 +394,7 @@ case class allItems_2(
   d: Option[String],
   offensiveSlowLightningMax: Option[BigDecimal],
   offensiveLightningMax: Option[BigDecimal],
-  reagentBaseBaseName: Option[ListOrItem[String]]
+  reagentBaseBaseName: GDArray[String]
 )
 object allItems_2 {
   implicit val codecJson: Codec.AsObject[allItems_2] = deriveCodec

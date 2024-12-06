@@ -3,7 +3,7 @@ package gdfumo
 import io.circe.Codec
 import io.circe.generic.JsonCodec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.{ListOrItem, StringOrElse}
+import datatype.{GDArray, StringOrElse}
 
 case class itemSets(
   o: String,

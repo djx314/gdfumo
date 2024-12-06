@@ -3,7 +3,7 @@ package gdfumo
 import io.circe.Codec
 import io.circe.generic.JsonCodec
 import io.circe.generic.semiauto.deriveCodec
-import datatype.{ListOrItem, StringOrElse}
+import datatype.{GDArray, StringOrElse}
 
 case class bonusTableAffixes(
   l: String,
@@ -22,7 +22,7 @@ case class bonusTableAffixes(
   characterDexterityModifier: Option[Int],
   characterStrengthModifier: Option[Int],
   racialBonusPercentDamage: Option[Int],
-  racialBonusRace: Option[ListOrItem[String]],
+  racialBonusRace: GDArray[String],
   i: Option[Int],
   characterStrength: Option[BigDecimal],
   characterDexterity: Option[BigDecimal],
