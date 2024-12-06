@@ -1,6 +1,6 @@
 package gdfumo
 
-import io.circe.{Codec, Json}
+import io.circe.Codec
 import io.circe.generic.semiauto.deriveCodec
 import datatype.ListOrItem
 
@@ -136,6 +136,7 @@ case class spawnSkill(
   defensiveConvert: Option[ListOrItem[BigDecimal]],
   offensiveLightningMax: Option[ListOrItem[BigDecimal]]
 )
+
 object spawnSkill {
   implicit val codecJson: Codec[spawnSkill] = {
     val impl = deriveCodec[spawnSkill]

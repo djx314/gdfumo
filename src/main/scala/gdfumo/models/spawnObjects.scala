@@ -21,6 +21,7 @@ case class spawnObjects(
   skill9: Option[skillN],
   skill10: Option[skillN]
 )
+
 object spawnObjects {
   implicit val codecJson: Codec[spawnObjects] = {
     val impl = deriveCodec[spawnObjects]
