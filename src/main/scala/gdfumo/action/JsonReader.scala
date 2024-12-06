@@ -27,6 +27,7 @@ object JsonReader {
       jsonSuccess <- parser.parse(inputToString)
       result      <- jsonSuccess.as[GrimTools]
     } yield {
+      println(result.versionDiffs.get("Version 1.2.1.2"))
       println(result.asJson == jsonSuccess)
 
       /*val preaa1 = result.suffixes.values.asJson.as[List[Map[String, Json]]].getOrElse(???).flatMap(_.keys)
