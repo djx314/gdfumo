@@ -39,21 +39,36 @@ object JsonReader {
           println(t1)
         }
       }*/
-      /*val reppsdklslfj2 = result.itemSkills
-      val aa3 = reppsdklslfj2.values.flatMap(_.keys).groupBy(identity).map {
+      /*val col1 = for {
+        x1 <- result.itemSkills.values.to(List)
+        t  <- x1.item1.spawnObjects.toList
+      } yield {
+        val b1 = List(Some(t.skill1), t.skill2, t.skill3, t.skill4, t.skill5, t.skill6, t.skill7, t.skill8, t.skill9, t.skill10)
+        b1.collect { case Some(t) => t }
+      }
+      val col2: List[spawnSkill] = col1.flatten.map(_.skill)
+      val nnaa3                  = col2.map(t => t.asJson.as[Map[String, Json]].getOrElse(???))
+      val aa3 = nnaa3.flatMap(_.keys).groupBy(identity).map {
         case (a1, a2) => {
-          if (a2.to(List).size == reppsdklslfj2.size) {
+          if (a2.to(List).size == nnaa3.size) {
             println(a1)
           }
         }
-      }
-      for (k <- result.itemSkills.values.flatMap(_.keys).to(Set)) {
+      }*/
+      /*for (k <- result.itemSkills.values.flatMap(_.keys).to(Set)) {
         println(s"$k:Option[Json],")
       }*/
 
-      /*val col =
-        for (x1 <- result.allItems.values.to(List))
-          yield allItems_2.derived111._1.encode(x1.item2, allItems_2.derived111._2)
+      /*val col1 = for {
+        x1 <- result.itemSkills.values.to(List)
+        t  <- x1.item1.spawnObjects.toList
+      } yield {
+        val b1 = List(Some(t.skill1), t.skill2, t.skill3, t.skill4, t.skill5, t.skill6, t.skill7, t.skill8, t.skill9, t.skill10)
+        b1.collect { case Some(t) => t }
+      }
+      val col2: List[spawnSkill] = col1.flatten.map(_.skill)
+      val col                    = col2.map(t => spawnSkill.der._1.encode(t, spawnSkill.der._2))
+
       val set  = col.flatMap(_._1).collect { case t if t._2 != "Option[Json]" => t }.to(Set)
       val map  = set.toList
       val set2 = map.map(_._1).groupBy(identity).collect { case (i1, i2) if i2.to(List).size == 1 => i1 }
@@ -67,7 +82,19 @@ object JsonReader {
       }
       println(set.size)*/
 
-      println(result.itemSkills.values.map(_.item1.spawnObjects))
+      /*val t: List[String] = result.itemSkills.values
+        .flatMap(_.item1.spawnObjects.toList.flatMap { t =>
+          val b1 = List(Some(t.skill1), t.skill2, t.skill3, t.skill4, t.skill5, t.skill6, t.skill7, t.skill8, t.skill9, t.skill10)
+          val b2 = b1.collect { case Some(t) => t }
+          b2.flatMap(x => x.skill.as[Map[String, Json]].getOrElse(???).keys.to(List))
+        })
+        .to(List)
+      println(t.to(Set))
+      println(t.to(Set).size)
+      for (t <- t.to(Set)) {
+        println(s"$t: Option[Json],")
+      }*/
+      // println(result.itemSkills.values.map(_.item1.spawnObjects.map(_.skill1.skill.warmUpEffectAttachPoint)))
       println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }

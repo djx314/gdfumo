@@ -15,7 +15,7 @@ case class itemSkills_1(
   offensiveSlowManaLeachMin: Option[List[Int]],
   retaliationChaosMax: Option[List[Int]],
   retaliationLifeMin: Option[List[Int]],
-  spawnObjects: Option[Map[String, Json]],
+  spawnObjects: Option[spawnObjects],
   retaliationStunChance: Option[List[Int]],
   racialBonusAbsoluteDamage: Option[List[Int]],
   retaliationLifeMax: Option[List[Int]],
