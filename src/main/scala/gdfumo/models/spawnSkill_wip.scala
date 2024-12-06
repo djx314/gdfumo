@@ -6,6 +6,7 @@ import datatype.ListOrItem
 
 case class spawnSkill(
   l: String,
+  o: Option[String],
   templateName: String,
   waveDistance: Option[BigDecimal],
   offensiveFireMax: Option[List[Int]],
@@ -107,7 +108,6 @@ case class spawnSkill(
   defensiveStun: Option[BigDecimal],
   offensiveTotalResistanceReductionAbsoluteDurationMin: Option[BigDecimal],
   offensivePhysicalReductionPercentDurationMin: Option[BigDecimal],
-  o: Option[String],
   offensiveCritDamageModifier: Option[List[Int]],
   defensiveLifeDuration: Option[BigDecimal],
   offensiveSlowLightningMin: Option[ListOrItem[BigDecimal]],
@@ -141,6 +141,4 @@ object spawnSkill {
     val impl = deriveCodec[spawnSkill]
     Codec.from(impl, impl.mapJson(_.dropNullValues))
   }
-
-  val der: (En121[spawnSkill], shapeless.HList) = En121.derived11111
 }

@@ -27,6 +27,8 @@ object JsonReader {
       jsonSuccess <- parser.parse(inputToString)
       result      <- jsonSuccess.as[GrimTools]
     } yield {
+      println(result.asJson == jsonSuccess)
+
       /*val preaa1 = result.suffixes.values.asJson.as[List[Map[String, Json]]].getOrElse(???).flatMap(_.keys)
       val preaa2 = result.prefixes.values.asJson.as[List[Map[String, Json]]].getOrElse(???).flatMap(_.keys)
       println(preaa1.size)
@@ -94,8 +96,6 @@ object JsonReader {
       for (t <- t.to(Set)) {
         println(s"$t: Option[Json],")
       }*/
-      // println(result.itemSkills.values.map(_.item1.spawnObjects.map(_.skill1.skill.warmUpEffectAttachPoint)))
-      println(result.asJson == jsonSuccess)
     }).left.foreach(println)
   }
 }
