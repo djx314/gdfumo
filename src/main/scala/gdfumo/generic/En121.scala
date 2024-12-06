@@ -39,7 +39,7 @@ object En121 extends En121Impl {
     override def encode(data: HNil, nameHList: HList): (List[(String, String)], Int, Boolean) = (List.empty, 0, true)
   }
 
-  def derived111122221[T, H <: HList](implicit
+  def derived1111111122221[T, H <: HList](implicit
     aa: Generic.Aux[T, H],
     bb: DefaultSymbolicLabelling.Aux[T, _ <: HList],
     en121: En121[H]
